@@ -1,0 +1,31 @@
+#* NOTE: This will be slow to load on first start-up, since it needs to install all the
+#*   Julia packages!
+ENV["EDITOR"] = "nvim"
+ENV["PYTHON"] = "/opt/conda/bin/python"
+ENV["JUPYTER"] = "/opt/conda/bin/jupyter"
+
+import Pkg
+let
+    pkgs = [
+        "Revise",
+        "OhMyREPL",
+        "DrWatson",
+        "AbbreviatedStackTraces",
+        "JuliaFormatter",
+    ]
+    for pkg in pkgs
+        if Base.find_package(pkg) === nothing
+            Pkg.add(pkg)
+        end
+    end
+end
+
+using OhMyREPL
+using AbbreviatedStackTraces
+
+# https://timholy.github.io/Revise.jl/stable/config/#Using-Revise-automatically-within-Jupyter/IJulia-1
+try
+    @eval using Revise
+catch e
+    @warn "Error initializing Revise" exception=(e, catch_backtrace())
+end
