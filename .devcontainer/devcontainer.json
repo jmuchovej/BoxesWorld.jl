@@ -18,7 +18,7 @@
 			"upgradePackages": true
 		},
 		"ghcr.io/julialang/devcontainer-features/julia:1": {
-			"channel": "release",
+			"channel": "1.8",
 		},
 	},
 
@@ -30,8 +30,8 @@
 		}
 	],
 
-	"workspaceMount": "source=${localWorkspaceFolder},target=/BoxWorld.jl,type=bind,consistency=cached",
-	"workspaceFolder": "/BoxWorld.jl",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+	"workspaceFolder": "/workspace",
 
 	"customizations": {
 		"vscode": {
@@ -58,13 +58,14 @@
 				"redhat.vscode-yaml",
 				"timonwong.shellcheck",
 				"bungcip.better-toml",
-				"quarto.quarto"
+				"quarto.quarto",
+				"github.vscode-github-actions"
 			]
 		}
 	},
 
 	"containerEnv": {
-		"JULIA_PROJECT": "/BoxWorld.jl",
+		"JULIA_PROJECT": "/workspace",
 		"JULIA_NUM_THREADS": "auto",
 	},
 
