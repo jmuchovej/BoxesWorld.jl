@@ -33,7 +33,7 @@ end
     @test all([action == A[idx] for (idx, action) in enumerate(action_iter)])
 end
 
-@testset "BoxWorld: O" begin
+@testset "BoxWorld: O|Z" begin
     rng = MersenneTwister(42)
 
     p = pomdp()
@@ -50,6 +50,27 @@ end
     obs = rand(rng, observation(p, Take() , s0))
     @test obs == :null
     @test has_consistent_observation_distributions(p)
+end
+
+@testset "BoxWorld: T" begin
+    rng = MersenneTwister(42)
+    p = pomdp()
+
+    s  = rand(rng, initialstate(p))
+    sp = rand(rng, transition(p, s, Move(1)))
+    @test sp.pos == p.boxes[1].pos
+    @test s.items == sp.items
+
+    @test transition(p, s, Move(1)) isa Deterministic
+
+    s  = rand(rng, initialstate(p))
+    sp = rand(rng, transition(p, s, Take()))
+    @test isterminal(p, sp)
+    @test sp.items == p.terminal.items
+
+    @test transition(p, s, Take()) isa Deterministic
+
+    @test has_consistent_transition_distributions(p)
 end
 
 @testset "BoxWorld: Solvers" begin
