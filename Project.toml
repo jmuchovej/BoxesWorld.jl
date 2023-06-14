@@ -1,13 +1,23 @@
-name = "BoxWorld"
+name = "BoxesWorld"
 uuid = "3a8eabaa-ff0c-46c8-af7c-f38dcbb67fff"
 authors = ["John Muchovej <5000729+jmuchovej@users.noreply.github.com> and contributors"]
 version = "0.1.0"
+
+[deps]
+Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
+POMDPTools = "7588e00f-9cae-40de-98dc-e0c70c48cdd7"
+POMDPs = "a93abf59-7444-517b-a68a-c42f96afdd7d"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
 julia = "1.8"
 
 [extras]
+NativeSARSOP = "a07c76ea-660d-4c9a-8028-2e6dbd212cb8"
+QMDP = "3aa3ecc9-5a5d-57c8-8188-3e47bd8068d2"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+SARSOP = "cef570c6-3a94-5604-96b7-1a5e143043f2"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Test", "SARSOP", "NativeSARSOP", "QMDP", "Random"]
