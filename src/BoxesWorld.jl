@@ -35,6 +35,7 @@ struct Box
 end
 Box(x::Number, y::Number, item::Symbol) = Box(Point(x, y), item)
 Base.:(==)(state::State, box::Box) = state.pos == box.pos
+Base.:(==)(state::State, p::Point) = state.pos == p
 
 struct BoxWorld{K} <: POMDP{State{K}, Action, Symbol}
     spawn::Point
