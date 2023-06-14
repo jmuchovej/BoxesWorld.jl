@@ -34,6 +34,7 @@ struct Box
     item::Symbol
 end
 Box(x::Number, y::Number, item::Symbol) = Box(Point(x, y), item)
+Base.:(==)(state::State, box::Box) = state.pos == box.pos
 
 struct BoxWorld{K} <: POMDP{State{K}, Action, Symbol}
     spawn::Point
@@ -56,10 +57,7 @@ function BoxWorld(; items::Vector{Symbol}, boxes::Vector, spawn::Point, rewards:
     return BoxWorld{length(boxes)}(spawn, items, boxes, terminal, rewards)
 end
 
-locations(p::BoxWorld) = [p.spawn, box_locations(p)...]
-all_locations(p::BoxWorld) = [p.spawn, box_locations(p)...]
-box_locations(p::BoxWorld) = [b.pos for b in p.boxes]
-realitems(p::BoxWorld) = [b.item for b in p.boxes]
+locations(p::BoxWorld) = [p.spawn, [box.pos for box in p.boxes]...]
 
 function POMDPs.isterminal(p::BoxWorld, s::State)
     return s == p.terminal

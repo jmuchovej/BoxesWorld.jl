@@ -6,7 +6,7 @@ function POMDPs.reward(p::BoxWorld, s::State, a::MoveAction)
 end
 
 function POMDPs.reward(p::BoxWorld, s::State, a::TakeAction)
-    box_idx = findfirst(isequal(s.pos), box_locations(p))  
+    box_idx = findfirst(isequal(s), p.boxes)  
 
     if isa(box_idx, Nothing)
         return 0
