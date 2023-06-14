@@ -39,6 +39,17 @@
 				"files.associations": {
 					"*.jl": "julia",
 				},
+				"files.exclude": {
+					"**/.git": true,
+					"**/.svn": true,
+					"**/.hg": true,
+					"**/CVS": true,
+					"**/.DS_Store": true,
+					"**/Thumbs.db": true,
+					"**/*.jl.cov": true,
+					"**/*.jl.*.cov": true,
+					"**/*.jl.mem": true,
+				},
 				"julia.executablePath": "~/.juliaup/bin/julia",
 				"julia.plots.path": "/BoxesWorld/plots/",
 				"julia.persistentSession.shell": "/usr/bin/zsh"
