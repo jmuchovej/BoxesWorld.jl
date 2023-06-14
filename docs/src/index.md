@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = BoxWorld
+CurrentModule = BoxesWorld
 ```
 
-# BoxWorld
+# BoxesWorld
 
-Documentation for [BoxWorld](https://github.com/jmuchovej/BoxWorld.jl).
+Documentation for [BoxesWorld](https://github.com/jmuchovej/BoxesWorld.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [BoxWorld]
+Modules = [BoxesWorld]
 ```

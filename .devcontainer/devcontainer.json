@@ -30,8 +30,8 @@
 		}
 	],
 
-	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-	"workspaceFolder": "/workspace",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/BoxesWorld,type=bind,consistency=cached",
+	"workspaceFolder": "/BoxesWorld",
 
 	"customizations": {
 		"vscode": {
@@ -40,32 +40,24 @@
 					"*.jl": "julia",
 				},
 				"julia.executablePath": "~/.juliaup/bin/julia",
-				"julia.plots.path": "/BoxWorld.jl/plots/",
+				"julia.plots.path": "/BoxesWorld/plots/",
 				"julia.persistentSession.shell": "/usr/bin/zsh"
 			},
 			"extensions": [
-				"ms-toolsai.jupyter-renderers",
 				"julialang.language-julia",
-				"ms-toolsai.jupyter",
-				"ms-toolsai.vscode-jupyter-cell-tags",
-				"ms-python.python",
-				"ms-toolsai.jupyter-keymap",
-				"REditorSupport.r",
 				"aaron-bond.better-comments",
 				"mikestead.dotenv",
-				"ronnidc.nunjucks",
 				"ms-azuretools.vscode-docker",
 				"redhat.vscode-yaml",
 				"timonwong.shellcheck",
 				"bungcip.better-toml",
-				"quarto.quarto",
 				"github.vscode-github-actions"
 			]
 		}
 	},
 
 	"containerEnv": {
-		"JULIA_PROJECT": "/workspace",
+		"JULIA_PROJECT": "${workspaceFolder}",
 		"JULIA_NUM_THREADS": "auto",
 	},
 

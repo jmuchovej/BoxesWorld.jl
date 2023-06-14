@@ -1,16 +1,16 @@
-using BoxWorld
+using BoxesWorld
 using Documenter
 
-DocMeta.setdocmeta!(BoxWorld, :DocTestSetup, :(using BoxWorld); recursive=true)
+DocMeta.setdocmeta!(BoxesWorld, :DocTestSetup, :(using BoxesWorld); recursive=true)
 
 makedocs(;
-    modules=[BoxWorld],
+    modules=[BoxesWorld],
     authors="John Muchovej <5000729+jmuchovej@users.noreply.github.com> and contributors",
-    repo="https://github.com/jmuchovej/BoxWorld.jl/blob/{commit}{path}#{line}",
-    sitename="BoxWorld.jl",
+    repo="https://github.com/jmuchovej/BoxesWorld.jl/blob/{commit}{path}#{line}",
+    sitename="BoxesWorld.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://jmuchovej.github.io/BoxWorld.jl",
+        canonical="https://jmuchovej.github.io/BoxesWorld.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -20,6 +20,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/jmuchovej/BoxWorld.jl",
+    repo="github.com/jmuchovej/BoxesWorld.jl",
     devbranch="main",
 )
