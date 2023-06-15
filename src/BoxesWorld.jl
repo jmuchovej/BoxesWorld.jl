@@ -46,16 +46,22 @@ struct BoxWorld{K} <: POMDP{State{K}, Action, Symbol}
     terminal::State{K}
 
     rewards::Dict{Symbol, Number}
+    discount::Real
 end
 
-function BoxWorld(; items::Vector{Symbol}, boxes::Vector, spawn::Point, rewards::Dict)
+function BoxWorld(;
+    items::Vector{Symbol},
+    boxes::Vector, spawn::Point,
+    rewards::Dict,
+    discount = 0.95
+)
     terminal = State{length(boxes)}(Point(-1, -1), fill(:null, length(boxes))) 
 
     @assert issubset(items, keys(rewards))
     @assert issubset([b.item for b in boxes], items)
 
     boxes = SVector{length(boxes)}(boxes)
-    return BoxWorld{length(boxes)}(spawn, items, boxes, terminal, rewards)
+    return BoxWorld{length(boxes)}(spawn, items, boxes, terminal, rewards, discount)
 end
 
 locations(p::BoxWorld) = [p.spawn, [box.pos for box in p.boxes]...]
@@ -65,7 +71,7 @@ function POMDPs.isterminal(p::BoxWorld, s::State)
 end
 
 function POMDPs.discount(p::BoxWorld)
-    return 0.999
+    return p.discount
 end
 
 include("./states.jl")
