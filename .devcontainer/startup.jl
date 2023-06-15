@@ -4,7 +4,9 @@ ENV["EDITOR"] = "nvim"
 ENV["PYTHON"] = "/opt/conda/bin/python"
 ENV["JUPYTER"] = "/opt/conda/bin/jupyter"
 
+orig_project = Base.active_project()
 import Pkg
+Pkg.activate()
 let
     pkgs = [
         "Revise",
@@ -29,3 +31,5 @@ try
 catch e
     @warn "Error initializing Revise" exception=(e, catch_backtrace())
 end
+
+Pkg.activate(orig_project)

@@ -62,13 +62,14 @@
 				"redhat.vscode-yaml",
 				"timonwong.shellcheck",
 				"bungcip.better-toml",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"redhat.vscode-xml"
 			]
 		}
 	},
 
 	"containerEnv": {
-		"JULIA_PROJECT": "${workspaceFolder}",
+		"JULIA_PROJECT": "/BoxesWorld",
 		"JULIA_NUM_THREADS": "auto",
 	},
 
