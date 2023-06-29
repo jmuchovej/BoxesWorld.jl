@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "BoxWorld",
+	"name": "BoxesWorld",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
 
 	"hostRequirements": {
@@ -30,8 +30,8 @@
 		}
 	],
 
-	"workspaceMount": "source=${localWorkspaceFolder},target=/BoxesWorld,type=bind,consistency=cached",
-	"workspaceFolder": "/BoxesWorld",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/w,type=bind,consistency=cached",
+	"workspaceFolder": "/w",
 
 	"customizations": {
 		"vscode": {
@@ -50,8 +50,8 @@
 					"**/*.jl.*.cov": true,
 					"**/*.jl.mem": true,
 				},
-				"julia.executablePath": "~/.juliaup/bin/julia",
-				"julia.plots.path": "/BoxesWorld/plots/",
+				"julia.executablePath": "${containerEnv:HOME}/.juliaup/bin/julia",
+				"julia.plots.path": "/w/plots/",
 				"julia.persistentSession.shell": "/usr/bin/zsh"
 			},
 			"extensions": [
@@ -69,7 +69,7 @@
 	},
 
 	"containerEnv": {
-		"JULIA_PROJECT": "/BoxesWorld",
+		"JULIA_PROJECT": "/w",
 		"JULIA_NUM_THREADS": "auto",
 	},
 
