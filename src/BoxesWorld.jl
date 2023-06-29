@@ -34,6 +34,7 @@ struct Box
     item::Symbol
 end
 Box(x::Number, y::Number, item::Symbol) = Box(Point(x, y), item)
+Box(x::Number, y::Number) = Box(x, y, :empty)
 Base.:(==)(state::State, box::Box) = state.pos == box.pos
 Base.:(==)(state::State, p::Point) = state.pos == p
 

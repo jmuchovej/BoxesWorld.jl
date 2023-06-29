@@ -2,7 +2,7 @@ function POMDPs.reward(p::BoxWorld, s::State, a::MoveAction)
     box = s.pos
     boxp = p.boxes[a.target].pos
 
-    return euclidean(box, boxp) * -1.
+    return -1. * euclidean(box, boxp)
 end
 
 function POMDPs.reward(p::BoxWorld, s::State, a::TakeAction)
