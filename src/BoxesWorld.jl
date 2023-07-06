@@ -24,6 +24,7 @@ function State(pos::Point, items::Vector)
     items = SVector{length(items)}(items)
     return State{length(items)}(pos, items)
 end
+Base.:(==)(state::State, p::Point) = state.pos == p
 
 struct Action{t}
     target::Number
@@ -31,11 +32,9 @@ end
 
 struct Box
     pos::Point
-    item::Symbol
 end
-Box(x::Number, y::Number, item::Symbol) = Box(Point(x, y), item)
+Box(x::Number, y::Number) = Box(Point(x, y))
 Base.:(==)(state::State, box::Box) = state.pos == box.pos
-Base.:(==)(state::State, p::Point) = state.pos == p
 
 struct BoxWorld{K} <: POMDP{State{K}, Action, Symbol}
     spawn::Point
@@ -55,10 +54,9 @@ function BoxWorld(;
     rewards::Dict,
     discount = 0.95
 )
-    terminal = State{length(boxes)}(Point(-1, -1), fill(:null, length(boxes))) 
+    terminal = State{length(boxes)}(Point(-1, -1), fill(:null, length(boxes)))
 
     @assert issubset(items, keys(rewards))
-    @assert issubset([b.item for b in boxes], items)
 
     boxes = SVector{length(boxes)}(boxes)
     return BoxWorld{length(boxes)}(spawn, items, boxes, terminal, rewards, discount)
