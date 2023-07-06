@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
 	"name": "BoxWorld",
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "image": "mcr.microsoft.com/devcontainers/base:jammy",
 
 	"hostRequirements": {
 		"cpus": 4,
@@ -50,9 +50,9 @@
 					"**/*.jl.*.cov": true,
 					"**/*.jl.mem": true,
 				},
-				"julia.executablePath": "~/.juliaup/bin/julia",
+				"julia.executablePath": "/home/vscode/.juliaup/bin/julia",
 				"julia.plots.path": "/BoxesWorld/plots/",
-				"julia.persistentSession.shell": "/usr/bin/zsh"
+				"julia.persistentSession.shell": "/bin/zsh"
 			},
 			"extensions": [
 				"julialang.language-julia",
