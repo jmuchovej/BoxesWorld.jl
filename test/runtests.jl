@@ -9,7 +9,7 @@ using NativeSARSOP
 const FRUITS = [:🍋, :🍒, :🥝]
 pomdp() = BoxWorld(;
     items=FRUITS,
-    boxes=[Box(1, 3, :🍋), Box(3, 1, :🥝), Box(3, 3, :🍒)],
+    boxes=[Box(1, 3), Box(3, 1), Box(3, 3)],
     spawn=Point(1, 1),
     rewards=Dict(f => r for (f, r) in zip(FRUITS, [20, 10, 5]))
 )
