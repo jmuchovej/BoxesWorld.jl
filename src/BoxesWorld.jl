@@ -1,18 +1,12 @@
 module BoxesWorld
 
 using POMDPs
-using POMDPs: POMDP
+using POMDPs: POMDP, isterminal, discount
 using POMDPTools: SparseCat, Deterministic
 using StaticArrays: SVector, @SVector
 using Distances: euclidean
 
-export Point,
-    State,
-    Action,
-    Move, MoveAction,
-    Take, TakeAction,
-    Box,
-    BoxWorld
+export Point, State, Action, Move, MoveAction, Take, TakeAction, Box, BoxWorld
 
 const Point = SVector{2, R} where {R <: Real}
 
@@ -25,6 +19,14 @@ function State(pos::Point, items::Vector)
     return State{length(items)}(pos, items)
 end
 Base.:(==)(state::State, p::Point) = state.pos == p
+Base.length(::State{K}) where {K} = K
+function Base.iterate(state::State, index::Int = 1)
+    if index > length(state.items)
+        return nothing
+    end
+
+    return (state.items[index], index + 1)
+end
 
 struct Action{t}
     target::Number
@@ -49,10 +51,7 @@ struct BoxWorld{K} <: POMDP{State{K}, Action, Symbol}
 end
 
 function BoxWorld(;
-    items::Vector{Symbol},
-    boxes::Vector, spawn::Point,
-    rewards::Dict,
-    discount = 0.95
+    items::Vector{Symbol}, boxes::Vector, spawn::Point, rewards::AbstractDict, discount=0.95
 )
     terminal = State{length(boxes)}(Point(-1, -1), fill(:null, length(boxes)))
 
@@ -62,7 +61,7 @@ function BoxWorld(;
     return BoxWorld{length(boxes)}(spawn, items, boxes, terminal, rewards, discount)
 end
 
-locations(p::BoxWorld) = [p.spawn, [box.pos for box in p.boxes]...]
+locations(p::BoxWorld) = [p.spawn, [box.pos for box ∈ p.boxes]...]
 
 function POMDPs.isterminal(p::BoxWorld, s::State)
     return s == p.terminal

@@ -1,3 +1,5 @@
+using POMDPs: observations, obsindex, observation
+
 function POMDPs.observations(p::BoxWorld)
     return [p.items..., :null]
 end

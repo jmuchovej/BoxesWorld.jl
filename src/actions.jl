@@ -1,3 +1,5 @@
+using POMDPs: actions, actionindex
+
 const MoveAction = Action{:move}
 Move(target::Number) = Action{:move}(target)
 

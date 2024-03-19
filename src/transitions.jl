@@ -1,3 +1,5 @@
+using POMDPs: transition
+
 function POMDPs.transition(p::BoxWorld, s::State, a::MoveAction)
     if isterminal(p, s)
         return Deterministic(s)
@@ -9,6 +11,6 @@ function POMDPs.transition(p::BoxWorld, s::State, a::MoveAction)
     return Deterministic(sp)
 end
 
-function POMDPs.transition(p::BoxWorld, s::State, a::TakeAction)
+function POMDPs.transition(p::BoxWorld, ::State, ::TakeAction)
     return Deterministic(p.terminal)
 end
