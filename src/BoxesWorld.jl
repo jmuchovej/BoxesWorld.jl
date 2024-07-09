@@ -5,6 +5,7 @@ using POMDPs: POMDP, isterminal, discount
 using POMDPTools: SparseCat, Deterministic
 using StaticArrays: SVector, @SVector
 using Distances: euclidean
+using DataStructures: OrderedDict
 
 export Point, State, Action, Move, MoveAction, Take, TakeAction, Box, BoxWorld
 
@@ -20,7 +21,7 @@ function State(pos::Point, items::Vector)
 end
 Base.:(==)(state::State, p::Point) = state.pos == p
 Base.length(::State{K}) where {K} = K
-function Base.iterate(state::State, index::Int = 1)
+function Base.iterate(state::State, index::Int=1)
     if index > length(state.items)
         return nothing
     end
@@ -46,12 +47,16 @@ struct BoxWorld{K} <: POMDP{State{K}, Action, Symbol}
 
     terminal::State{K}
 
-    rewards::Dict{Symbol, Number}
+    rewards::OrderedDict{Symbol, <:Number}
     discount::Real
 end
 
 function BoxWorld(;
-    items::Vector{Symbol}, boxes::Vector, spawn::Point, rewards::AbstractDict, discount=0.95
+    items::Vector{Symbol},
+    boxes::Vector,
+    spawn::Point,
+    rewards::OrderedDict{Symbol, Real},
+    discount=0.95,
 )
     terminal = State{length(boxes)}(Point(-1, -1), fill(:null, length(boxes)))
 
