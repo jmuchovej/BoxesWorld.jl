@@ -11,7 +11,7 @@ function pomdp()
         items=FRUITS,
         boxes=[Box(1, 3), Box(3, 3), Box(3, 1)],
         spawn=Point(1, 1),
-        rewards=Dict(f => r for (f, r) ∈ zip(FRUITS, [20, 10, 5])),
+        rewards=Dict(f => r for (f, r) ∈ zip(FRUITS, [20.0, 10.0, 5.0])),
     )
 end
 
