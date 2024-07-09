@@ -1,7 +1,8 @@
 using POMDPs: stateindex, states, initialstate
+using LinearAlgebra: normalize
 
 function Base.CartesianIndices(p::BoxWorld)
-    nlocations = length(p.boxes) + 1  # "+ 1" for `spawn` as a location
+    nlocations = length(locations(p))
     box_item_combos = fill(length(p.items), length(p.boxes))
     return CartesianIndices((box_item_combos..., nlocations))
 end
@@ -32,13 +33,17 @@ function Base.getindex(p::BoxWorld, stateindex::Int)
         return p.terminal
     end
 
-    indices = CartesianIndices(p)[stateindex].I
-    (item_idxs, location_idx) = (indices[1:(end - 1)], indices[end])
+    index = CartesianIndices(p)[stateindex]
+    return getindex(p, index)
+end
+
+function Base.getindex(p::BoxWorld, stateindex::CartesianIndex)
+    (item_idxs..., location_idx) = stateindex.I
 
     location = locations(p)[location_idx]
-    items = [p.items[item_idx] for item_idx ∈ item_idxs]
+    items = [p.items[idx] for idx ∈ item_idxs]
 
-    state = State(location, items)
+    state = BoxesWorld.State(location, items)
 
     return state
 end
@@ -57,9 +62,12 @@ function POMDPs.states(p::BoxWorld)
 end
 
 function POMDPs.initialstate(p::BoxWorld)
-    spawnstates = filter(s -> s.pos == p.spawn, states(p))
+    spawn_index = findfirst(isequal(p.spawn), locations(p))
+    num_boxes = ntuple(_ -> Colon(), length(p.boxes))
+    indices = CartesianIndices(p)[num_boxes..., spawn_index]
+    spawnstates = [p[index] for index ∈ indices][:]
 
-    probs = fill(1 / length(spawnstates), length(spawnstates))
+    probs = normalize(ones(length(spawnstates)), 1)
     dist = SparseCat(spawnstates, probs)
 
     return dist
