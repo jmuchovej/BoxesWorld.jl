@@ -7,19 +7,18 @@ function POMDPs.reward(p::BoxWorld, s::State, a::MoveAction)
 
     mv_cost = -1 * euclidean(box, boxp)
 
-    #* Is the agent staying at an already visited box? Penalize them.
-    exploration_bonus = box == boxp ? -p.rewards[s.items[a.target]] : 0
+    #* Is the agent loitering at the current box? Penalize them.
+    loitering_penalty = box == boxp ? -1 : 0
 
-    return mv_cost + exploration_bonus
+    return mv_cost + loitering_penalty
 end
 
 function POMDPs.reward(p::BoxWorld, s::State, a::TakeAction)
     box_idx = findfirst(isequal(s.pos), [box.pos for box ∈ p.boxes])
 
     reward = -1
-    if isa(box_idx, Nothing)
-        return -1
-        # return -1e4
+    if isnothing(box_idx)
+        return reward
     end
 
     item = s.items[box_idx]
