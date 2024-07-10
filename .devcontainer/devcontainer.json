@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
 	"name": "BoxesWorld",
-    "image": "quay.io/jupyter/datascience-notebook:2023-12-14",
+    "image": "quay.io/jupyter/datascience-notebook:2024-07-08",
 
 	"hostRequirements": {
 		"cpus": 2,
@@ -26,7 +26,7 @@
 	"mounts": [
 		{
 			"source": "${localWorkspaceFolder}/.devcontainer/startup.jl",
-			"target": "/home/vscode/.julia/config/startup.jl",
+			"target": "/opt/julia/config/startup.jl",
 			"type": "bind"
 		},
 	],
@@ -47,7 +47,7 @@
 					"**/*.jl.*.cov": true,
 					"**/*.jl.mem": true,
 				},
-				// "julia.executablePath": "/home/vscode/.juliaup/bin/julia",
+				"julia.executablePath": "/usr/local/bin/julia",
 				"julia.plots.path": "/bw/plots/",
 				"julia.persistentSession.shell": "/bin/zsh"
 			},
@@ -81,6 +81,6 @@
 	// "customizations": {},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "vscode",
+	"containerUser": "jovyan",
 
 }
