@@ -31,21 +31,20 @@ The world is rotated by 45 degrees to accentuate costs, but is set in a 5x5 grid
 world. Specifically, there are 3 boxes at `(1, 5)`, `(5, 5)`, and `(5, 1)`. Each box
 may contain only one fruit, but collectively there may be any combination of fruits.
 
-<center style="display: flex">
+<p align="center">
   <img 
     src="./examples/boxes=3-fruits=🍋🥝🍓🍍/world.png"
     alt="Example of the BoxWorld layout with an agent, three boxes, and a kiwi, lemon, and strawberry in boxes 1, 2, and 3 respectively."
-    width="49%"
+    width="45%"
     align="left"
-    hspace="20"
     />
   <img 
     src="./examples/boxes=3-fruits=🍋🥝🍓🍍/trajectory.png"
     alt="Example of an Agent's trajectory in a BoxesWorld with three boxes. Boxes 1 and 2 have lemons, Box 3 has a strawberry. The agent moved to Box 2, then Box 3, and took the strawberry."
-    width="49%"
+    width="45%"
     align="right"
     />
-</center>
+</p>
 
 On the left, we have an agent in a 3-box world with a kiwi (🥝), lemon (🍋), and
 strawberry (🍓) in boxes 1, 2, and 3, respectively. The agent cannot observe the
