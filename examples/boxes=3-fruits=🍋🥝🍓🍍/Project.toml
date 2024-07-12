@@ -1,0 +1,13 @@
+[deps]
+BoxesWorld = "3a8eabaa-ff0c-46c8-af7c-f38dcbb67fff"
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+NativeSARSOP = "a07c76ea-660d-4c9a-8028-2e6dbd212cb8"
+POMDPTools = "7588e00f-9cae-40de-98dc-e0c70c48cdd7"
+POMDPs = "a93abf59-7444-517b-a68a-c42f96afdd7d"
+
+[compat]
+DataStructures = "0.18"
+NativeSARSOP = "0.1"
+POMDPs = "1"
+POMDPTools = "1"
+julia = "1.8, 1.9, 1.10"
