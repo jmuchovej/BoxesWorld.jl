@@ -35,13 +35,14 @@ may contain only one fruit, but collectively there may be any combination of fru
   <img 
     src="./examples/boxes=3-fruits=🍋🥝🍓🍍/world.png"
     alt="Example of the BoxWorld layout with an agent, three boxes, and a kiwi, lemon, and strawberry in boxes 1, 2, and 3 respectively."
-    width="50%"
+    width="49%"
     align="left"
+    hspace="20"
     />
   <img 
     src="./examples/boxes=3-fruits=🍋🥝🍓🍍/trajectory.png"
     alt="Example of an Agent's trajectory in a BoxesWorld with three boxes. Boxes 1 and 2 have lemons, Box 3 has a strawberry. The agent moved to Box 2, then Box 3, and took the strawberry."
-    width="50%"
+    width="49%"
     align="right"
     />
 </center>
