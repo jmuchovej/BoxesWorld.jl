@@ -44,6 +44,7 @@ may contain only one fruit, but collectively there may be any combination of fru
     width="45%"
     align="right"
     />
+  <br />
 </p>
 
 On the left, we have an agent in a 3-box world with a kiwi (🥝), lemon (🍋), and
